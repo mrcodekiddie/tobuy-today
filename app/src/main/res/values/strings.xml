@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Star Fresh</string>
+    <string name="title_activity_customer">CustomerActivity</string>
+    <string name="pref_previously_started">false</string>
+    <string name="cash">cash</string>
+    <string name="credit">credit</string>
+    <string name="cheque">cheque</string>
+    <string name="client_name">STAR FRESH</string>
+    <string name="client_address">"HOSUR - 625110"</string>
+    <string name="client_gstn">GSTIN:kABLANAKSHULIN </string>
+</resources>
