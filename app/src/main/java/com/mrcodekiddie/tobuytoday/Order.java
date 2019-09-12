@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 public class Order implements Serializable
 {
-
     public String itemCode;
     public String itemName;
 
@@ -13,6 +12,4 @@ public class Order implements Serializable
         this.itemCode = itemCode;
         this.itemName = itemName;
     }
-
-
 }

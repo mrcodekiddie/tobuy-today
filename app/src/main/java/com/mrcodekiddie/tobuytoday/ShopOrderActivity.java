@@ -31,7 +31,6 @@ public class ShopOrderActivity extends AppCompatActivity
     RecyclerView mRecyclerView;
     List<Order> itemList;
 
-    ImageButton proceedButton;
     private Toolbar toolbar;
     ItemMasterAdapter itemMasterAdapter;
 
@@ -70,7 +69,6 @@ public class ShopOrderActivity extends AppCompatActivity
 
 
 
-      //  itemsWithStock=myDB.getItemsWithStock();
 
 
 
@@ -96,9 +94,7 @@ public class ShopOrderActivity extends AppCompatActivity
 
     }
 
-    private ArrayList<EditModel> populateList()
-    {
-
+    private ArrayList<EditModel> populateList()     {
         ArrayList<EditModel> list = new ArrayList<>();
 
         for(int i = 0; i <itemList.size(); i++)
@@ -107,13 +103,11 @@ public class ShopOrderActivity extends AppCompatActivity
             editModel.setEditTextValue("");
             list.add(editModel);
         }
-
         return list;
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater=getMenuInflater();
         inflater.inflate(R.menu.search_menu,menu);
 
@@ -133,14 +127,5 @@ public class ShopOrderActivity extends AppCompatActivity
                  return false;
              }
          });
-
-
         return true;
-    }
-
-    @Override
-    public void onBackPressed()
-    {
-
-    }
-}
+    }}

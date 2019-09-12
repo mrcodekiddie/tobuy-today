@@ -33,7 +33,6 @@ public class ItemMasterAdapter extends RecyclerView.Adapter<ItemMasterAdapter.It
     private List<Order> itemListFull;
     private LayoutInflater inflater;
 
-    public static HashMap<String, Order> orderHashMap = new HashMap<String, Order>();
     public static ArrayList<EditModel> editModelArrayList;
 
     public ItemMasterAdapter(Context context, List<Order> itemList, ArrayList<EditModel> editModelArrayList1)
@@ -58,9 +57,11 @@ public class ItemMasterAdapter extends RecyclerView.Adapter<ItemMasterAdapter.It
     public void onBindViewHolder(@NonNull ItemMasterViewHolder itemMasterViewHolder, int i)
     {
 
-        Order iList = itemList.get(i);
+       Order iList = itemList.get(i);
        itemMasterViewHolder.itemNameTextView.setText(iList.itemName);
-       itemMasterViewHolder.inputQtyEditText.setText(editModelArrayList.get(i).getEditTextValue());
+      //
+        // itemMasterViewHolder.inputQtyEditText.setText(editModelArrayList.get(i).getEditTextValue());
+        itemMasterViewHolder.inputQtyEditText.setText(editModelArrayList.get(itemMasterViewHolder.getLayoutPosition()).getEditTextValue());
     }
 
     @Override
@@ -101,18 +102,10 @@ public class ItemMasterAdapter extends RecyclerView.Adapter<ItemMasterAdapter.It
                 }
 
                 @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count)
-                {
-                    Log.d("adapter position", String.valueOf(getAdapterPosition()));
-
-                   // editModelArrayList.get(getAdapterPosition()).setEditTextValue(inputQtyEditText.getText().toString());
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
                     String inputValue=inputQtyEditText.getText().toString();
-                    Order iList = itemList.get(getAdapterPosition());
-                  editModelArrayList.get(itemList.indexOf(iList)).setEditTextValue(inputValue);
-
-
-
-                }
+                    //Order iList = itemList.get(getAdapterPosition());
+                    editModelArrayList.get(getLayoutPosition()).setEditTextValue(inputValue);                }
 
                 @Override
                 public void afterTextChanged(Editable s)

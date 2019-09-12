@@ -4,10 +4,7 @@ public class EditModel
 {
     private String editTextValue;
 
-    public EditModel()
-    {
-
-    }
+    public EditModel(){ }
 
     public String getEditTextValue()
     {
