@@ -29,19 +29,17 @@ import java.util.Set;
 public class ItemMasterAdapter extends RecyclerView.Adapter<ItemMasterAdapter.ItemMasterViewHolder> implements Filterable
 {
     private Context context;
-    private List<Order> itemList;
-    private List<Order> itemListFull;
+    private List<ItemData> itemList;
+    private List<ItemData> itemListFull;
     private LayoutInflater inflater;
 
-    public static ArrayList<EditModel> editModelArrayList;
 
-    public ItemMasterAdapter(Context context, List<Order> itemList, ArrayList<EditModel> editModelArrayList1)
+    public ItemMasterAdapter(Context context, List<ItemData> itemList)
     {
         this.context = context;
         this.itemList = itemList;
         itemListFull=new ArrayList<>(itemList);
         this.inflater = LayoutInflater.from(context);
-        this.editModelArrayList = editModelArrayList1;
     }
 
     @NonNull
@@ -57,11 +55,11 @@ public class ItemMasterAdapter extends RecyclerView.Adapter<ItemMasterAdapter.It
     public void onBindViewHolder(@NonNull ItemMasterViewHolder itemMasterViewHolder, int i)
     {
 
-       Order iList = itemList.get(i);
+       Order iList = itemList.get(i).order;
        itemMasterViewHolder.itemNameTextView.setText(iList.itemName);
       //
         // itemMasterViewHolder.inputQtyEditText.setText(editModelArrayList.get(i).getEditTextValue());
-        itemMasterViewHolder.inputQtyEditText.setText(editModelArrayList.get(itemMasterViewHolder.getLayoutPosition()).getEditTextValue());
+        itemMasterViewHolder.inputQtyEditText.setText(itemList.get(itemMasterViewHolder.getLayoutPosition()).itemQuantity.getEditTextValue());
     }
 
     @Override
@@ -105,7 +103,7 @@ public class ItemMasterAdapter extends RecyclerView.Adapter<ItemMasterAdapter.It
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
                     String inputValue=inputQtyEditText.getText().toString();
                     //Order iList = itemList.get(getAdapterPosition());
-                    editModelArrayList.get(getLayoutPosition()).setEditTextValue(inputValue);                }
+                    itemList.get(getLayoutPosition()).itemQuantity.setEditTextValue(inputValue);                }
 
                 @Override
                 public void afterTextChanged(Editable s)
@@ -127,7 +125,7 @@ public class ItemMasterAdapter extends RecyclerView.Adapter<ItemMasterAdapter.It
     private Filter itemFilter=new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-            List<Order> filteredItemList=new ArrayList<>();
+            List<ItemData> filteredItemList=new ArrayList<>();
 
             if(constraint==null || constraint.length()==0)
             {
@@ -139,9 +137,9 @@ public class ItemMasterAdapter extends RecyclerView.Adapter<ItemMasterAdapter.It
             {
                 String filteredPattern=constraint.toString().toLowerCase().trim();
 
-                for(Order item : itemListFull)
+                for(ItemData item : itemListFull)
                 {
-                    if(item.itemName.toLowerCase().contains(filteredPattern))
+                    if(item.order.itemName.toLowerCase().contains(filteredPattern))
                     {
                         filteredItemList.add(item);
                     }
